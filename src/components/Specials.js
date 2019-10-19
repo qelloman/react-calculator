@@ -6,8 +6,10 @@ export class Specials extends Component {
     }
 
     render() {
+        let className = 'btn btn-special btn-small'
+
         return (
-            <button onClick={this.click}> {specialSymbols[this.props.special]} </button>
+            <button className={className} onClick={this.click}> {specialSymbols[this.props.special]} </button>
 
         )
     }
@@ -16,5 +18,8 @@ export class Specials extends Component {
 export default Specials
 
 const specialSymbols = [
-    'C',
+    'AC',
+    '±',
+    '%'
+
 ]

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../App.css'
+import './components.css'
 
 
 
@@ -8,8 +8,12 @@ export class Numbers extends Component {
         this.props.click(this.props.digit)    
     }
     render() {
+
+        let className = 'btn btn-number'
+        className += (this.props.digit === '0') ? ' btn-wide' : ' btn-small'
+
         return (
-            <button className='btn btn-small btn-number' onClick={this.click}> {this.props.digit} </button>
+            <button className={className} onClick={this.click}> {this.props.digit} </button>
         )
     }
 }

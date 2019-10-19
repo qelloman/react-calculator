@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-
+import './components.css'
 export class Display extends Component {
     render() {
         return (
-            <div>
+            <div className='displayPanel'>
                 {this.props.displayText}
                 
             </div>

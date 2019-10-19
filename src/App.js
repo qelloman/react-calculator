@@ -69,37 +69,40 @@ export class App extends Component {
 
   render() {
     return (
-      <div className="container" style={containerStyle}>
+      <div className="container">
         <div>
           <Display displayText={this.state.displayText}/>
+        </div>
+        <div>
+        <Specials special={specialEnum.clear} click={this.clearCalculator}/>
+        <Specials special={specialEnum.flipSign} click={this.clearCalculator}/>
+        <Specials special={specialEnum.percent} click={this.clearCalculator}/>
+          <Operators op={opEnum.div} click={this.clickOp}/>
         </div>
         <div>
           <Numbers digit='7' click={this.clickDigit} />
           <Numbers digit='8' click={this.clickDigit}/>
           <Numbers digit='9' click={this.clickDigit}/>
+          <Operators op={opEnum.mul} click={this.clickOp}/>
         </div>
         <div>
           <Numbers digit='4' click={this.clickDigit}/>
           <Numbers digit='5' click={this.clickDigit}/>
           <Numbers digit='6' click={this.clickDigit}/>
+          <Operators op={opEnum.sub} click={this.clickOp}/>
         </div>
         <div>
           <Numbers digit='1' click={this.clickDigit}/>
           <Numbers digit='2' click={this.clickDigit}/>
           <Numbers digit='3' click={this.clickDigit}/>
+          <Operators op={opEnum.add} click={this.clickOp}/>
         </div>
         <div>
           <Numbers digit='0' click={this.clickDigit}/>
-          <Specials special={specialEnum.clear} click={this.clearCalculator}/>
-        </div>
-        <div>
-          <Operators op={opEnum.add} click={this.clickOp}/>
-          <Operators op={opEnum.sub} click={this.clickOp}/>
-          <Operators op={opEnum.mul} click={this.clickOp}/>
-          <Operators op={opEnum.div} click={this.clickOp}/>
+          <Numbers digit='.' click={this.clickDigit}/>
           <Operators op={opEnum.eq} click={this.clickOp}/>
-          
         </div>
+        
 
       </div>
     )
@@ -118,9 +121,6 @@ const opEnum = {
 
 const specialEnum = {
   clear: 0,
-}
-
-const containerStyle = {
-  width: '400px',
-  
+  flipSign: 1,
+  percent: 2,
 }

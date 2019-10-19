@@ -5,8 +5,9 @@ export class Operators extends Component {
         this.props.click(this.props.op)    
     }
     render() {
+        let className = 'btn btn-operator btn-small'
         return (
-            <button onClick={this.click}> {opSymbols[this.props.op]} </button>
+            <button className={className} onClick={this.click}> {opSymbols[this.props.op]} </button>
         )
     }
 }
