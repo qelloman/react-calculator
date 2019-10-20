@@ -18,6 +18,7 @@ export class App extends Component {
     displayText: '0',
     lastOperator: undefined,
     lastNumber: undefined,
+    isLastClickOperator: false,
     overwriteNum: true,
   }
 
@@ -26,6 +27,7 @@ export class App extends Component {
       displayText: '0',
       lastOperator: undefined,
       lastNumber: undefined,
+      isLastClickOperator: false,
       overwriteNum: true,  
     })
   }
@@ -35,33 +37,37 @@ export class App extends Component {
     this.setState({ 
       displayText: displayText,
       overwriteNum: false,
+      isLastClickOperator: false,
     })
   }
   clickOp(op) {
-    let opResult = 0
-    let currentNumber = parseInt(this.state.displayText, 10)
-    switch(this.state.lastOperator) {
-      case opEnum.add:
-        opResult = this.state.lastNumber + currentNumber
-        break
-      case opEnum.sub:
-        opResult = this.state.lastNumber - currentNumber
-        break
-      case opEnum.mul:
-        opResult = this.state.lastNumber * currentNumber
-        break
-      case opEnum.div:
-        opResult = this.state.lastNumber / currentNumber
-        break
-      default:
-        opResult = currentNumber
-        break
-
+    
+    let opResult = this.state.lastNumber
+    if (this.state.isLastClickOperator === false) {
+      let currentNumber = parseInt(this.state.displayText, 10)
+      switch(this.state.lastOperator) {
+        case opEnum.add:
+          opResult = this.state.lastNumber + currentNumber
+          break
+        case opEnum.sub:
+          opResult = this.state.lastNumber - currentNumber
+          break
+        case opEnum.mul:
+          opResult = this.state.lastNumber * currentNumber
+          break
+        case opEnum.div:
+          opResult = this.state.lastNumber / currentNumber
+          break
+        default:
+          opResult = currentNumber
+          break
+      }
     }
     this.setState({
       lastOperator: op,
       lastNumber: opResult,
       displayText: opResult.toString(),
+      isLastClickOperator: true,
       overwriteNum: true,
     })
   }
@@ -74,9 +80,9 @@ export class App extends Component {
           <Display displayText={this.state.displayText}/>
         </div>
         <div>
-        <Specials special={specialEnum.clear} click={this.clearCalculator}/>
-        <Specials special={specialEnum.flipSign} click={this.clearCalculator}/>
-        <Specials special={specialEnum.percent} click={this.clearCalculator}/>
+          <Specials special={specialEnum.clear} click={this.clearCalculator}/>
+          <Specials special={specialEnum.flipSign} click={this.clearCalculator}/>
+          <Specials special={specialEnum.percent} click={this.clearCalculator}/>
           <Operators op={opEnum.div} click={this.clickOp}/>
         </div>
         <div>
