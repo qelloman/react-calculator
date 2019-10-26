@@ -17,9 +17,3 @@ export class Specials extends Component {
 
 export default Specials
 
-const specialSymbols = [
-    'AC',
-    '±',
-    '%'
-
-]

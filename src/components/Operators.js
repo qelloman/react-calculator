@@ -31,6 +31,4 @@ export class Operators extends Component {
 
 export default Operators
 
-const opSymbols = [
-    '+', '-', '×', '÷', '='
-]
+

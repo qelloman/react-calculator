@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import Numbers from './components/Numbers.js'
-import Operators from './components/Operators.js'
-import Specials from './components/Specials.js'
+import Buttons from './components/Buttons.js'
 import Display from './components/Display.js'
+import {opSymbols, specialSymbols, specialEnum, opEnum} from './components/const.js'
 import './App.css'
 
 export class App extends Component {
@@ -76,57 +75,15 @@ export class App extends Component {
   render() {
     return (
       <div className="container">
-        <div>
           <Display displayText={this.state.displayText}/>
-        </div>
-        <div>
-          <Specials special={specialEnum.clear} click={this.clearCalculator}/>
-          <Specials special={specialEnum.flipSign} click={this.clearCalculator}/>
-          <Specials special={specialEnum.percent} click={this.clearCalculator}/>
-          <Operators op={opEnum.div} click={this.clickOp}/>
-        </div>
-        <div>
-          <Numbers digit='7' click={this.clickDigit} />
-          <Numbers digit='8' click={this.clickDigit}/>
-          <Numbers digit='9' click={this.clickDigit}/>
-          <Operators op={opEnum.mul} click={this.clickOp}/>
-        </div>
-        <div>
-          <Numbers digit='4' click={this.clickDigit}/>
-          <Numbers digit='5' click={this.clickDigit}/>
-          <Numbers digit='6' click={this.clickDigit}/>
-          <Operators op={opEnum.sub} click={this.clickOp}/>
-        </div>
-        <div>
-          <Numbers digit='1' click={this.clickDigit}/>
-          <Numbers digit='2' click={this.clickDigit}/>
-          <Numbers digit='3' click={this.clickDigit}/>
-          <Operators op={opEnum.add} click={this.clickOp}/>
-        </div>
-        <div>
-          <Numbers digit='0' click={this.clickDigit}/>
-          <Numbers digit='.' click={this.clickDigit}/>
-          <Operators op={opEnum.eq} click={this.clickOp}/>
-        </div>
-        
-
+          <Buttons
+          clickDigit={this.clickDigit}
+          clickOp={this.clickOp}
+          clearCalculator={this.clearCalculator}        
+          />        
       </div>
     )
   }
 }
 
 export default App
-
-const opEnum = {
-  add: 0,
-  sub: 1,
-  mul: 2,
-  div: 3,
-  eq: 4,
-}
-
-const specialEnum = {
-  clear: 0,
-  flipSign: 1,
-  percent: 2,
-}
