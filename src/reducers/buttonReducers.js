@@ -82,7 +82,6 @@ const buttonReducers = (state = {
                         break
                 }
                     
-                console.log(opResult)
                 state = {
                     ...state,
                     prevOp: action.button,
@@ -104,7 +103,7 @@ const buttonReducers = (state = {
                 }
                 // do not take another input when the number of digits exceeds its maximum (12).
                 // displays 11 digits at max 
-                else if (state.displayText.length >= 11 ) {
+                else if (state.displayText.length >= 11 && state.writeNew === false) {
                     newDisplayText = state.displayText                
                 } 
                 else {
