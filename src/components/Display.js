@@ -5,7 +5,8 @@ export const Display = (props) => {
 
     let fontSize = 50
     let textLength = props.displayText.length
-
+    
+    // adpatively change the font size.
     if (textLength === 8) {
         fontSize = 48
     } else if (textLength === 9) {

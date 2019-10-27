@@ -1,4 +1,5 @@
 
+// For convenience, use enum for buttons other than regular digits.
 export const specialEnum = {
     dot: 10,
     add: 11,

@@ -10,8 +10,10 @@ const buttonReducers = (state = {
 
 }, action) => {
     switch (action.type) {
-
+        // AC or C
         case "CLICK_CLEAR":
+            // all clear
+            // remove everything and return back to initial state.
             if (state.displayText === '0') {
                 state = {
                     prevOp: -1,
@@ -21,6 +23,8 @@ const buttonReducers = (state = {
                     writeNew: true,
                     lastButton: -1,
                 }
+            // clear
+            // remove current typed number (not the result) and take new number input
             } else {
                 state = {
                     ...state,
@@ -30,6 +34,11 @@ const buttonReducers = (state = {
                 }
             }
             break
+        // math operations (+, -, *, /, and =)
+        // If previous number or result exsits, perform mathmatical operation with current number.
+        // Highlight the operation button which was pressed in the last time.
+        // User can change the oepration after the click another one.
+        // Next operation will be performed only based on the last clicked operation button.
         case "CLICK_OP":
             {   
                 let opResult = state.prevNum
@@ -53,7 +62,12 @@ const buttonReducers = (state = {
                             break
                     }
                 }
-    
+
+                // Note that state stores operation results and its display seperataely.
+                // This is to limit the number of digits to display while keeping the operation result.
+                // For example, 1 / 3 = 0.333333333333...
+                // Display only shows the 12 digits including the dot,
+                // But, if you multiply by 3 again, the result will be 1.
                 state = {
                     ...state,
                     prevOp: action.button,
@@ -65,6 +79,7 @@ const buttonReducers = (state = {
                 }
             }
             break
+        // special operations ( flip the sign, percent )
         case "CLICK_SPECIAL":
             {
                 let opResult = state.prevNum
@@ -93,6 +108,8 @@ const buttonReducers = (state = {
                 }
             }
             break
+        // take number input
+        // only take a new input after the operation 
         case "CLICK_DIGIT":
             {
                 let newDisplayText = ''

@@ -4,12 +4,11 @@ import {logger} from "redux-logger"
 
 import button from "./reducers/buttonReducers"
 
-// sort of state manager.
+// only use one reducer.
 export default createStore(
     combineReducers(
         {
             button,
-            //logic
         }
     ),
     {},
