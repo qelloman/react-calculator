@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
-import './components.css'
-export class Display extends Component {
-    render() {
-        return (
-            <div className='displayPanel'>
-                {this.props.displayText}
-                
-            </div>
-        )
-    }
-}
+import React from 'react'
+import '../css/components.css'
 
-export default Display
+export const Display = (props) => {
+
+    return (
+        <div className='displayPanel'>
+            {props.displayText}
+            
+        </div>
+    )
+
+}
