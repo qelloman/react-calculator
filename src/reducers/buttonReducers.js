@@ -58,7 +58,7 @@ const buttonReducers = (state = {
                     ...state,
                     prevOp: action.button,
                     prevNum: opResult,
-                    displayText: opResult.toString(),
+                    displayText: opResult.toString().substring(0,11), // maximum 11 digits
                     isLastClickOperator: true,
                     writeNew: true,
                     lastButton: action.button,
@@ -97,9 +97,17 @@ const buttonReducers = (state = {
         case "CLICK_DIGIT":
             {
                 let newDisplayText = ''
+                
+                // do not take another 0 when current number is 0.
                 if (state.displayText === '0' && action.button === 0) {
                     newDisplayText = state.displayText
-                } else {
+                }
+                // do not take another input when the number of digits exceeds its maximum (12).
+                // displays 11 digits at max 
+                else if (state.displayText.length >= 11 ) {
+                    newDisplayText = state.displayText                
+                } 
+                else {
                     let buttonChar = (action.button === 10) ? '.' : action.button.toString()
                     newDisplayText = state.writeNew ? buttonChar : state.displayText + buttonChar
                 }
